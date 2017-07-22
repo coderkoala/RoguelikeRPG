@@ -29,7 +29,6 @@ Animation::Animation(int left, int top,int sizex, int sizey, float holdt, int n 
 
 }
 
-
 void Animation::draw(sf::RenderTarget &window, int x, int y)
 {
 	sf::Sprite sprite(*pTex);
@@ -37,6 +36,7 @@ void Animation::draw(sf::RenderTarget &window, int x, int y)
 	sprite.setPosition((float)x,(float)y);
 	window.draw(sprite);
 }
+
 
 
 void Animation::resetframe()

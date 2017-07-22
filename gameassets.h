@@ -53,6 +53,7 @@ static const std::string loadingwallpaper="game/tex/loading_background";
 static const std::string loading="game/anim/anim_loading";
 static const std::string muxc_path = "game/mux/";
 static const std::string bump = "game/snd/snd_bump.wav";
+static const std::string snd = "game/snd/";
 static const std::string layertexfile[3]={"game/tex/layer_01", "game/tex/layer_02","game/tex/layer_03"};
 static const std::string map[5] = {"game/map/map_01","game/map/map_02","game/map/map_03","game/map/map_04","game/map/map_05"};
 };

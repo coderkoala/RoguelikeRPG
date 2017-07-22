@@ -8,6 +8,9 @@
 #include"Animation.h"
 #include"texturecodex.h"
 #include"map.h"
+#include"loadingscr.h"
+#include<thread>
+#include<mutex>
 
 #define collision_down 80
 #define collision_up 80
@@ -21,22 +24,26 @@ float ymax = 512;
 //////////////////////////////////////////////////////////////////////////////////
 int main(std::string map)
 {
-	sf::Vector2f slack;  sf::FloatRect rekt;
-	bool pause = false;
-	mapdomain::map mapdata("game/map/map_02");
 	///////////////////////////////////////
 	///		Window Render
 	///////////////////////////////////////
-	sf::RenderWindow window(sf::VideoMode(800,512), "This shit ruined my life lmao");
-
+	sf::RenderWindow window(sf::VideoMode(800,512), "Adventures of Joy");
+	window.setActive(false);
+	//////////////////////////////////////////////////////////////////////////////
+	///		Loading screen
+	//////////////////////////////////////////////////////////////////////////////
+	loadingscr winload(window);
+	std::thread loading(&loadingscr::screen, &winload);
+	loading.detach();
+	
+	/////////////////////////////////////////////
+	/// Load map assets, set rain flag
+	///	Initialize pause flag
+	/////////////////////////////////////////////
+	sf::Vector2f slack;  sf::FloatRect rekt;
+	bool pause = false;
+	mapdomain::map mapdata("game/map/map_02");
 	bool rainbool=mapdata.rain;
-
-	//////////////////////m/////////////////
-	///		Load the Loading screen assets
-	///////////////////////////////////////
-	sf::Texture fxscre_n; fxscre_n.loadFromFile(fsystem::loadingwallpaper);
-	sf::Sprite fxscreen(fxscre_n);
-	sf::Sprite sprite;
 
 	///////////////////////////////////////
 	///		Load Animation
@@ -50,17 +57,7 @@ int main(std::string map)
 	Animation waterfall(0,256,96,192, 0.200f, waterfall_tiles, fsystem::animation_path);
 	Animation waterfall_small(0,448,96,160, 0.200f, waterfall_tiles, fsystem::animation_path);
 	Animation torch(0, 608,32,64,0.100f, torch_tiles, fsystem::animation_path);
-	Animation loadscr(0,0,320,100,0.500f,loading_anim, fsystem::loading);
 	Animation grass(0,672,32,32,1.000f, grass_tiles, fsystem::animation_path);
-
-	///////////////////////////////////////
-	/// LOAD MUSIC
-	///////////////////////////////////////
-	sf::Music music;
-	music.openFromFile(mapdata.music);
-	music.setLoop(true);
-	music.setVolume(40);
-	music.play();
 	
 	//////////////////////////////////////
 	///	Load sounds
@@ -90,11 +87,33 @@ int main(std::string map)
 	///////////////////////////////////////////
 	PC chara(sf::Vector2f((float)mapdata.entry.x*32,(float)mapdata.entry.y*32),fsystem::heroX);
 
+
+	///////////////////////////////////////
+	/// LOAD MUSIC
+	///////////////////////////////////////
+	sf::Music music;
+	music.openFromFile(mapdata.music);
+	music.setLoop(true);
+	music.setVolume(40);
+
+	//////////////////////////////////////////
+	///	Pause this thread now that all the 
+	///resources are loaded
+	//////////////////////////////////////////
+	std::this_thread::sleep_for(std::chrono::milliseconds(4000));
+	window.setActive(true);
+	
+	///////////////////////////////////////
+	/// PLAY MUSIC
+	///////////////////////////////////////
+	music.play();
 		
 	///////////////////////////////////////////
 	///Time counter initialized
 	///////////////////////////////////////////
 	auto tp = std::chrono::steady_clock::now();
+
+
 	//////////////////////////////////////////
 	///		Game loop starts here
 	//////////////////////////////////////////
@@ -199,7 +218,7 @@ int main(std::string map)
 		if( sf::Keyboard::isKeyPressed( sf::Keyboard::Escape ) )
 		{
 			//menu shit
-			if(pause == false) {pause = true; music.stop();}
+			//std::cout<<"Esc";
 		}
 
 		}
@@ -241,6 +260,7 @@ int main(std::string map)
 		///   Draw Procedure
 		///////////////////////////////
 
+		// -- Starts here --
 
 		//////////////////////////////////////////////////////////////////////////////
 		///						Draw Layers 1 and 3

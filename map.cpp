@@ -47,11 +47,11 @@ map::map(std::string mapname)
 			///////////////////////////////////////////////
 			///		Modulus division yeilds the x axis
 			///////////////////////////////////////////////
-			layer[u].filecoords[i][j].x=(int) layer[u].tile[i][j] % 32;
+			layer[u].filecoords[i][j].x=(int) (layer[u].tile[i][j] % 32);
 			///////////////////////////////////////////////
 			///		Integer division brings the y axis
 			///////////////////////////////////////////////
-			layer[u].filecoords[i][j].y=(int) layer[u].tile[i][j] /32 ;
+			layer[u].filecoords[i][j].y=(int) (layer[u].tile[i][j] /32) ;
 		}
 	}
 }
