@@ -1,4 +1,3 @@
-Inline-style: 
 ![alt text](https://coderkoala.github.io/images/ADjoy.jpg"RogueLike RPG")
 
 # RoguelikeRPG
