@@ -1,6 +1,6 @@
 # RoguelikeRPG
 
-  It's a game made in C++ and SFML. Using modern C++11 tools and techniques.                             ![Rogue Like RPG](https://coderkoala.github.io/images/ADjoy.jpg)
+  It's a game made in C++ and SFML library.                        ![Rogue Like RPG](https://coderkoala.github.io/images/ADjoy.jpg)
 
 
 
