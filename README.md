@@ -1,3 +1,6 @@
+Inline-style: 
+![alt text](https://coderkoala.github.io/images/ADjoy.jpg"RogueLike RPG")
+
 # RoguelikeRPG
 
 It's a game made in C++ and SFML.
