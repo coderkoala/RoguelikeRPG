@@ -1,4 +1,4 @@
-![alt text](https://coderkoala.github.io/images/ADjoy.jpg"RogueLike RPG")
+![Rogue Like RPG](https://coderkoala.github.io/images/ADjoy.jpg)
 
 # RoguelikeRPG
 
