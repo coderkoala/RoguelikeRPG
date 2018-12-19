@@ -1,6 +1,8 @@
-![Rogue Like RPG](https://coderkoala.github.io/images/ADjoy.jpg)
-
 # RoguelikeRPG
+
+            ![Rogue Like RPG](https://coderkoala.github.io/images/ADjoy.jpg)
+
+
 
 It's a game made in C++ and SFML.
 
