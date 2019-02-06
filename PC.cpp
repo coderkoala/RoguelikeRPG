@@ -1,4 +1,6 @@
 #include "PC.h"
+#include <ctype>
+#include <time>
 
 
 	void PC::Draw( sf::RenderTarget& rt )
